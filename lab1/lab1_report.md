@@ -23,7 +23,7 @@
 
 У меня версия убунту 22.04, я обновила пакеты и установила python, ansible
 
-![setup](images/pic2.png)
+![setup](img/2.png)
 
 ### Настройка MikroTik CHR
 
