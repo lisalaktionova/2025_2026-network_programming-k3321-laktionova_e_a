@@ -95,7 +95,7 @@ sudo wg show
 ![ip](images/pic7.png)
 
 Отправим пинг на сервер
-![ip](images/pic8.png)
+![ip](img/4.png)
 Работает!
 
 ## Заключение
