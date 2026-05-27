@@ -27,8 +27,25 @@
 
 ### Настройка MikroTik CHR
 
-Тут использую VMware Workstation.
+Тут использую VMware Workstation. Настройки:
+Тип: Other → Other 64-bit
 
+ОЗУ: 256 MB
+
+Сеть: NAT (т.к. с Bridge были проблемы)
+
+Контроллер: LSI Logic SAS
+
+Тип диска: IDE
+
+После запуска CHR установила пароль для admin, настроила DHCP:
+
+```
+/ip dhcp-client add interface=ether1 disabled=no
+/ip address print
+```
+
+CHR получил IP 192.168.83.135. Winbox подключился по MAC-адресу.
 
 1. Выбираем эмуляцию
 ![utm](img/3.png)
@@ -91,11 +108,14 @@ sudo wg show
     allowed-address=0.0.0.0/0
 ```
 
-3. Проверяем 
-![ip](images/pic7.png)
+3. Проверяем
+
+![ip](img/5.png)
 
 Отправим пинг на сервер
+
 ![ip](img/4.png)
+
 Работает!
 
 ## Заключение
