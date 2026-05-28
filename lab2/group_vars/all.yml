@@ -1,0 +1,5 @@
+---
+# Общие переменные для всех CHR
+ntp_server: "0.ru.pool.ntp.org, 1.ru.pool.ntp.org"
+new_user: "ansible"
+new_password: "Ansible123!"
