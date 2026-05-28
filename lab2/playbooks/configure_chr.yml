@@ -1,0 +1,125 @@
+---
+- name: Lab2 Setup - MikroTik CHR Configuration
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    # 1. Создаём директорию для конфигов на сервере
+    - name: Prepare local directory for configs
+      delegate_to: localhost
+      file:
+        path: "./configs"
+        state: directory
+        mode: '0755'
+
+    # 2. Настройка нового пользователя
+    - name: Create new user
+      community.routeros.command:
+        commands:
+          - /user add name={{ new_user }} password={{ new_password }} group=full
+
+    # 3. Отключаем default admin (по желанию)
+    - name: Disable default admin user
+      community.routeros.command:
+        commands:
+          - /user set admin disabled=yes
+      ignore_errors: yes
+
+    # 4. Настройка NTP клиента
+    - name: Configure NTP client
+      community.routeros.command:
+        commands:
+          - /system ntp client set enabled=yes servers={{ ntp_server }}
+
+    # 5. Установка имени устройства
+    - name: Set system identity
+      community.routeros.command:
+        commands:
+          - /system identity set name={{ inventory_hostname }}
+
+    # 6. Создание loopback интерфейса
+    - name: Create loopback interface
+      community.routeros.command:
+        commands:
+          - /interface bridge add name=loopback0
+
+    # 7. Назначение IP на loopback
+    - name: Set loopback IP address
+      community.routeros.command:
+        commands:
+          - /ip address add address={{ loopback_ip }}/32 interface=loopback0
+
+    # 8. Настройка OSPF instance
+    - name: Configure OSPF instance
+      community.routeros.command:
+        commands:
+          - /routing ospf instance add name=instance0 version=2 router-id={{ loopback_ip }}
+
+    # 9. Настройка OSPF area
+    - name: Configure OSPF area
+      community.routeros.command:
+        commands:
+          - /routing ospf area add name=backbone area-id=0.0.0.0 instance=instance0
+
+    # 10. Настройка OSPF интерфейсов
+    - name: Configure OSPF interfaces
+      community.routeros.command:
+        commands:
+          - /routing ospf interface-template add interfaces=loopback0 area=backbone type=ptp
+          - /routing ospf interface-template add interfaces=ether1 area=backbone
+          - /routing ospf interface-template add interfaces=wg1 area=backbone type=ptp
+
+    # 11. Сбор информации о CHR (факты)
+    - name: Gather CHR facts
+      community.routeros.facts:
+        gather_subset: all
+      register: chr_facts
+
+    # 12. Сбор информации об OSPF соседях
+    - name: Get OSPF neighbors
+      community.routeros.command:
+        commands:
+          - /routing ospf neighbor print detail
+      register: chr_ospf_neighbors
+
+    # 13. Сбор статуса OSPF интерфейсов
+    - name: Get OSPF interfaces status
+      community.routeros.command:
+        commands:
+          - /routing ospf interface print
+      register: chr_ospf_interfaces
+
+    # 14. Полный экспорт конфигурации
+    - name: Get full configuration export
+      community.routeros.command:
+        commands:
+          - /export
+      register: chr_export
+
+    # 15. Сохранение фактов в файл
+    - name: Export facts to file
+      delegate_to: localhost
+      copy:
+        content: "{{ chr_facts.ansible_facts | to_nice_json }}"
+        dest: "./configs/{{ inventory_hostname }}_facts.json"
+
+    # 16. Сохранение OSPF соседей в файл
+    - name: Export OSPF neighbors to file
+      delegate_to: localhost
+      copy:
+        content: "{{ chr_ospf_neighbors.stdout[0] }}"
+        dest: "./configs/{{ inventory_hostname }}_ospf_neighbors.txt"
+
+    # 17. Сохранение OSPF интерфейсов в файл
+    - name: Export OSPF interfaces to file
+      delegate_to: localhost
+      copy:
+        content: "{{ chr_ospf_interfaces.stdout[0] }}"
+        dest: "./configs/{{ inventory_hostname }}_ospf_interfaces.txt"
+
+    # 18. Сохранение полного конфига в файл
+    - name: Export full configuration to file
+      delegate_to: localhost
+      copy:
+        content: "{{ chr_export.stdout[0] }}"
+        dest: "./configs/{{ inventory_hostname }}_export.txt"
