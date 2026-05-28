@@ -5,7 +5,7 @@
 - Year: 2025/2026
 - Group: K3321
 - Author: Laktionova Elizaveta Artemovna
-- Lab: Lab1
+- Lab: Lab2
 - Date of create: 27.05.2026
 - Date of finished: 28.05.2026
 # Лабораторная работа №2
