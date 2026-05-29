@@ -1,12 +1,13 @@
-University: [ITMO University](https://itmo.ru/ru/)
-Faculty: [FICT](https://fict.itmo.ru)
-Course: [Network programming](https://github.com/itmo-ict-faculty/network-programming)
-Year: 2025/2026
-Group: K3323
-Author: Panina Anna Sergeevna
-Lab: Lab1
-Date of create: 07.05.2026
-Date of finished: 08.05.2026
+# header
+- University: [ITMO University](https://itmo.ru/ru/)
+- Faculty: [FICT](https://fict.itmo.ru)
+- Course: [Network programming](https://github.com/itmo-ict-faculty/network-programming)
+- Year: 2025/2026
+- Group: K3321
+- Author: Laktionova Elizaveta Artemovna
+- Lab: Lab3
+- Date of create: 29.05.2026
+- Date of finished: 29.05.2026
 
 # Лабораторная работа №3
 
