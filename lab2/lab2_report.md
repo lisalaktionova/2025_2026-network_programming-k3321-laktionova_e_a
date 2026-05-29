@@ -59,6 +59,7 @@ PublicKey = eMbKl30871nkoH0R8A4/0b+feD7rywn6Ubkt5wA6lY=
 AllowedIPs = 10.0.0.3/32
 ```
 После перезапуска WireGuard туннель успешно установлен.
+
 ![ВМ](img/3.png)
 
 ### Вывод
