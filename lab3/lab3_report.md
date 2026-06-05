@@ -17,7 +17,7 @@
 
 ### Netbox
 
-netbox я подняла на вм с помошью docker compose:
+netbox подняли на виртуальной машине с помошью docker compose:
 
 ```
 sudo apt update
@@ -35,11 +35,11 @@ docker compose pull
 docker compose up -d
 ```
 
-Создала админа:
+Создаем админа:
 ```
 docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 ```
-Добавила два моих chr:
+Добавляем два моих chr:
 
 ![netbox](images/pic1.png)
 ![netbox](images/pic2.png)
@@ -47,7 +47,7 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 
 ### Ansible 
 
-Первым делом я настроила динамический inventory ["dynamic inventory"](./inventories/netbox/netbox_inventory.yml)
+Сначала настроиваем динамический inventory ["dynamic inventory"](./inventories/netbox/netbox_inventory.yml)
 
 ![Файлы](images/pic4.png)
 
@@ -67,7 +67,7 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 
 Этот playbook берет данные об устройствах из NetBox и применяет их к CHR через RouterOS CLI. Сначала он находит устройство в NetBox по имени из inventory, затем получает назначенные IP-адреса и формирует желаемую конфигурацию. В безопасном режиме playbook только показывает, какие изменения будут выполнены, а для реального применения используется переменная `apply_changes=true`.
 
-Я поменяла имя роутера 
+Поменяла имя роутера 
 
 ![chr](images/pic5.png)
 
