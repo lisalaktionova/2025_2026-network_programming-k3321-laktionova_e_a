@@ -7,7 +7,7 @@
 - Author: Laktionova Elizaveta Artemovna
 - Lab: Lab3
 - Date of create: 29.05.2026
-- Date of finished: 29.05.2026
+- Date of finished: 06.06.2026
 
 # Лабораторная работа №3
 
