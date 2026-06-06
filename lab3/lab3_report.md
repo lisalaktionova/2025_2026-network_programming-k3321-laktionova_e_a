@@ -42,13 +42,13 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 Добавляем два моих chr:
 
 ![netbox](img/1.png)
-![netbox](img/3.png)
+![netbox](img/2.png)
 
 ### Ansible 
 
 Сначала настроиваем динамический inventory ["dynamic inventory"](./inventories/netbox/netbox_inventory.yml)
 
-![Файлы](images/pic4.png)
+![Файлы](img/3.png)
 
 #### Сценарий забора данных из netbox
 
@@ -68,10 +68,10 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 
 Поменяла имя роутера 
 
-![chr](images/pic5.png)
+![chr](img/4.png)
 
 И прокатила мой плейбук, после чего как и ожидалось имя изменилось
-![chr](images/pic6.png)
+![chr](img/5.png)
 
 #### Cценарий, позволяющий собрать серийный номер устройства и вносящий серийный номер в Netbox
 
@@ -81,8 +81,8 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 
 После проката плейбука получаю запись серийного номера в netbox
 
-![serial](images/pic7.png)
-![serial](images/pic8.png)
+![serial](img/6.png)
+![serial](img/7.png)
 
 
 ### Вывод
