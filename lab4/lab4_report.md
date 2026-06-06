@@ -6,7 +6,7 @@
 - Group: K3321
 - Author: Laktionova Elizaveta Artemovna
 - Lab: Lab4
-- Date of create: 06.06.2026
+- Date of create: 05.06.2026
 - Date of finished: 06.06.2026
 
 # Лабораторная работа №4
@@ -17,7 +17,7 @@
 
 ### Подготовка среды
 
-После клона репозитория запустила vargant:
+После клона репозитория запускаем vargant:
 
 ```bash
 cd tutorials/vm-ubuntu-24.04
@@ -36,7 +36,7 @@ source ~/p4setup.bash
 ### Basic Forwarding
 
 
-В файл `basic.p4`добавила логику разбора Ethernet/IPv4, таблица `ipv4_lpm`, действие `ipv4_forward` и deparser:
+В файл `basic.p4`добавляем логику разбора Ethernet/IPv4, таблица `ipv4_lpm`, действие `ipv4_forward` и deparser:
 
 ```p4
 action ipv4_forward(macAddr_t dstAddr, egressSpec_t port) {
@@ -63,7 +63,7 @@ table ipv4_lpm {
 
 Проверка связности в Mininet:
 
-![pingall](images/pic1.png)
+![pingall](img/1.png)
 
 
 ### Basic Tunneling
@@ -114,15 +114,15 @@ apply {
 
 IP-маршрутизация без туннеля:
 
-![Recieve H2](./images/pic2.png)
+![Recieve H2](./img/2.png)
 
 Туннелирование:
 
-![Tunnel H2](./images/pic3.png)
+![Tunnel H2](./img/3.png)
 
 При наличии `myTunnel` маршрутизация выполняется по `dst_id`, а не по IP-адресу назначения:
 
-![Tunnel H2 with H3 IP](./images/pic4.png)
+![Tunnel H2 with H3 IP](./img/4.png)
 
 Пакет пришел на `h2`, хотя IP-адрес `10.0.3.3` принадлежит `h3`. То есть, для инкапсулированных пакетов коммутатор использует поле `dst_id` из заголовка `myTunnel`.
 
