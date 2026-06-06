@@ -1,7 +1,7 @@
 ---
 plugin: netbox.netbox.nb_inventory
 
-api_endpoint: "http://82.202.137.94:8000"
+api_endpoint: "http://192.168.83.128:8000"
 token: "4qIVJZAiSQNAqnbC1HCBAvDuNE4UMDpaZVsrCXNO"
 validate_certs: false
 
