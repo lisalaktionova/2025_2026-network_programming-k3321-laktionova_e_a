@@ -46,7 +46,7 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 
 ### Ansible 
 
-Сначала настроиваем динамический inventory ["dynamic inventory"](./inventories/netbox/netbox_inventory.yml)
+Сначала настроиваем динамический inventory ["dynamic inventory"](inventories/netbox/netbox_inventory.yml)
 
 ![Файлы](img/3.png)
 
@@ -58,11 +58,11 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 
 После выполнения плейбука информация собрана в файл lab3/out/netbox_dump.json.
 
-["output_netbox"](.out/netbox_dump.json)
+["output_netbox"](out/netbox_dump.json)
 
 #### Cценарий, при котором на основе данных из Netbox можно настроить 2 CHR, изменить имя устройства, добавить IP адрес на устройство
 
-["configure_chr_from_netbox"](.playbooks/configure_chr_from_netbox.yml)
+["configure_chr_from_netbox"](playbooks/configure_chr_from_netbox.yml)
 
 Этот playbook берет данные об устройствах из NetBox и применяет их к CHR через RouterOS CLI. Сначала он находит устройство в NetBox по имени из inventory, затем получает назначенные IP-адреса и формирует желаемую конфигурацию. В безопасном режиме playbook только показывает, какие изменения будут выполнены, а для реального применения используется переменная `apply_changes=true`.
 
@@ -75,7 +75,7 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 
 #### Cценарий, позволяющий собрать серийный номер устройства и вносящий серийный номер в Netbox
 
-["sync_serial_to_netbox"](.playbooks/sync_serial_to_netbox.yml)
+["sync_serial_to_netbox"](playbooks/sync_serial_to_netbox.yml)
 
 Этот playbook подключается к CHR, получает идентификатор устройства и при необходимости записывает его обратно в NetBox. Для CHR серийный номер берется из вывода команды `/system license print`. По умолчанию playbook работает в режиме проверки, а обновление NetBox выполняется при запуске с переменной `update_netbox=true`.
 
