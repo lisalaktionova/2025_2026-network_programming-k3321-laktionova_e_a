@@ -41,7 +41,7 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 ```
 Добавляем два моих chr:
 
-![netbox](images/pic1.png)
+![netbox](img/1.png)
 ![netbox](images/pic2.png)
 ![netbox](images/pic3.png)
 
