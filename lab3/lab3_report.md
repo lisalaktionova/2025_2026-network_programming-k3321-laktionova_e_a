@@ -52,7 +52,7 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 
 #### Сценарий забора данных из netbox
 
-["export_netbox"](.playbooks/export_netbox.yml)
+["export_netbox"](playbooks/export_netbox.yml)
 
 Данный playbook обращается к API NetBox. Он забирает основные объекты, которые нужны для дальнейшей работы: устройства, интерфейсы, IP-адреса, префиксы, роли, платформы и теги. Дополнительно используется lookup из коллекции `netbox.netbox`.
 
