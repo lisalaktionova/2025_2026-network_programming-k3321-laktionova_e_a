@@ -79,7 +79,7 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 
 Этот playbook подключается к CHR, получает идентификатор устройства и при необходимости записывает его обратно в NetBox. Для CHR серийный номер берется из вывода команды `/system license print`. По умолчанию playbook работает в режиме проверки, а обновление NetBox выполняется при запуске с переменной `update_netbox=true`.
 
-После проката плейбука получаю запись серийного номера в netbox
+После запуска плейбука получаю запись серийного номера в netbox
 
 ![serial](img/6.png)
 ![serial](img/7.png)
